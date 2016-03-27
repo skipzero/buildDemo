@@ -2,7 +2,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     app: {
-      name: 'NewApp',
+      name: 'buildDemo',
       version: '<%= pkg.version %>',
       license: '<%= pkg.license %>',
       homepage: '<%= pkg.homepage %>',
@@ -11,8 +11,9 @@ module.exports = function(grunt) {
         build: 'build'
       },
       files: {
-        gruntfile: ['Gruntfile.js'],
-        js: ['**/*.js']
+        gruntfile: ['gruntfile.js'],
+        js: ['**/*.js'],
+        css: ['**/*.scss']
       },
       targets: {
         gruntfile: [{
@@ -20,22 +21,58 @@ module.exports = function(grunt) {
         }],
         main: [{
           expand: true,
-          cwd: '<%= app.paths.src %>/',
+          cwd: '<%= app.paths.build %>/',
           src: '<%= app.files.js %>',
+          css: '<%= app.files.css %>',
           dest: '<%= app.paths.build %>/',
-          ext: '.min.js',
+          ext: '.js',
           extDot: 'last'
         }]
       }
     },
+    babel: {
+      options: {
+        blacklist: ['useStrict'],
+        sourceMap: true,
+        presets: ['es2015']
+      },
+      dist: {
+          files: {
+            './build/js/main.js' : './src/js/main.js'
+            // expand: true,
+            // cwd: '<%= app.paths.src %>',
+            // src: '<%= app.files.js %>',
+            // ext: '.js',
+            // dest: '<%= app.paths.build %>'
+        }
+      }
+    },
+    sass: {
+      options: {
+        sourceMap: true
+      },
+      dist: {
+        files: {
+          '/build/**/*.css' : '/src/**/*.scss'
+        }
+      },
+      main: {
+        files: '<%= app.targets.main.css %>'
+      }
+    },
     jshint: {
       options: {
+        'esversion': 6,
         'camelcase': true,
         'curly': true,
         'eqeqeq': true,
         'newcap': true,
         'undef': true,
-        'unused': true
+        'unused': true,
+        'globals': {
+          alert: true,
+          document: true
+        }
       },
       gruntfile: {
         files: '<%= app.targets.gruntfile %>',
@@ -48,10 +85,6 @@ module.exports = function(grunt) {
       main: {
         files: '<%= app.targets.main %>',
         options: {
-          // Uncomment if needed
-          //'browser': true,
-          //'devel': true,
-          //'jquery': true,
           'predef': [
             'define',
             'require'
@@ -61,6 +94,7 @@ module.exports = function(grunt) {
     },
     jscs: {
       options: {
+        esnext: true,
         'disallowSpacesInNamedFunctionExpression': {
           'beforeOpeningRoundBrace': true
         },
@@ -100,8 +134,6 @@ module.exports = function(grunt) {
           'catch',
           'typeof'
         ],
-        'validateIndentation': 2,
-        'validateLineBreaks': 'LF',
         'validateQuoteMarks': true
       },
       gruntfile: {
@@ -116,7 +148,9 @@ module.exports = function(grunt) {
         banner: '// <%= app.name %> (version <%= app.version %>) <%= app.homepage %>\n// License: <%= app.license %>\n',
         compress: {
           comparisons: false
-        }
+        },
+        screwIE8: true,
+        quoteStyle: 1
       },
       main: {
         files: '<%= app.targets.main %>'
@@ -134,17 +168,18 @@ module.exports = function(grunt) {
     }
   });
 
-	grunt.loadNpmTasks('grunt-sass');
+	grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jscs');
+  grunt.loadNpmTasks('grunt-babel');
 
   grunt.registerTask('check:gruntfile', ['jshint:gruntfile', 'jscs:gruntfile']);
-  grunt.registerTask('check:main', ['jshint:main', 'jscs:main']);
+  grunt.registerTask('check:main', ['babel', 'jshint:main', 'jscs:main']);
   grunt.registerTask('check', ['check:gruntfile', 'check:main']);
 
-  grunt.registerTask('build:main', ['check:main', 'uglify:main']);
+  grunt.registerTask('build:main', ['check:main', 'uglify:main', 'sass:main']);
   grunt.registerTask('build', ['build:main']);
 
   grunt.registerTask('default', ['check:gruntfile', 'build']);
