@@ -10,6 +10,9 @@ build/*
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
+#SASS
+.sass-cache
+
 # node-waf configuration
 .lock-wscript
 

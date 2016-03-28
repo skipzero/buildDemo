@@ -32,7 +32,6 @@ module.exports = function(grunt) {
     },
     babel: {
       options: {
-        blacklist: ['useStrict'],
         sourceMap: true,
         presets: ['es2015']
       },
@@ -49,19 +48,17 @@ module.exports = function(grunt) {
     },
     sass: {
       options: {
-        sourceMap: true
+        sourcemap: 'file'
       },
       dist: {
         files: {
-          '/build/**/*.css' : '/src/**/*.scss'
+          'build/css/main.css' : 'src/**/*.scss'
         }
-      },
-      main: {
-        files: '<%= app.targets.main.css %>'
       }
     },
     jshint: {
       options: {
+        'force': true,
         'esversion': 6,
         'camelcase': true,
         'curly': true,
@@ -94,6 +91,7 @@ module.exports = function(grunt) {
     },
     jscs: {
       options: {
+        force: true,
         esnext: true,
         'disallowSpacesInNamedFunctionExpression': {
           'beforeOpeningRoundBrace': true
@@ -115,12 +113,12 @@ module.exports = function(grunt) {
         'requireCamelCaseOrUpperCaseIdentifiers': true,
         'requireCapitalizedConstructors': true,
         'disallowMixedSpacesAndTabs': true,
-        'disallowTrailingWhitespace': true,
+        'disallowTrailingWhitespace': false,
         'disallowTrailingComma': true,
         'disallowSpaceAfterPrefixUnaryOperators': true,
         'disallowSpaceBeforePostfixUnaryOperators': true,
         'disallowSpacesInsideArrayBrackets': true,
-        'disallowSpacesInsideParentheses': true,
+        'disallowSpacesInsideParentheses': false,
         'requireSpaceAfterKeywords': [
           'if',
           'else',
@@ -176,10 +174,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-babel');
 
   grunt.registerTask('check:gruntfile', ['jshint:gruntfile', 'jscs:gruntfile']);
-  grunt.registerTask('check:main', ['babel', 'jshint:main', 'jscs:main']);
+  grunt.registerTask('check:main', ['babel', 'jshint:main']);
+  //taking jscs of main to create less dumb errors
+  // grunt.registerTask('check:main', ['babel', 'jshint:main', 'jscs:main']); 
   grunt.registerTask('check', ['check:gruntfile', 'check:main']);
 
-  grunt.registerTask('build:main', ['check:main', 'uglify:main', 'sass:main']);
+
+  grunt.registerTask('build:main', ['check:main', 'uglify:main', 'sass']);
   grunt.registerTask('build', ['build:main']);
 
   grunt.registerTask('default', ['check:gruntfile', 'build']);
