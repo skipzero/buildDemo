@@ -6,10 +6,10 @@ I've combinied a very simple example of JS, SASS and HTML to show what's needed 
 http://webpack.github.io/
 
 ## Gulp
-gulpjs.com
+http://gulpjs.com
 
 ## Grunt
-gruntjs.com
+http://gruntjs.com
 ***
 
 ## Articles
