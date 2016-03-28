@@ -30,6 +30,12 @@ module.exports = function(grunt) {
         }]
       }
     },
+    'html-prettyprinter': {
+      single: {
+        src: 'src/index.html',
+        dest: 'build/index.html'
+      }
+    },
     babel: {
       options: {
         sourceMap: true,
@@ -166,6 +172,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-html-prettyprinter');
 	grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -180,7 +187,7 @@ module.exports = function(grunt) {
   grunt.registerTask('check', ['check:gruntfile', 'check:main']);
 
 
-  grunt.registerTask('build:main', ['check:main', 'uglify:main', 'sass']);
+  grunt.registerTask('build:main', ['check:main', 'uglify:main', 'html-prettyprinter', 'sass']);
   grunt.registerTask('build', ['build:main']);
 
   grunt.registerTask('default', ['check:gruntfile', 'build']);
