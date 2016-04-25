@@ -25,7 +25,7 @@ gulp.task('build', function() {
 
 // processes and moves our stylesheets. 
 gulp.task('sass', function () {
-	return gulp.src(['./src/**/*.scss'])
+	return gulp.src(['./src/**/*.scss', './src/vendor/**.*.scss'])
 	.pipe(sass().on('error', sass.logError))
 	.pipe(gulp.dest('./build/')); 
 });
