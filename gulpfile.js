@@ -1,12 +1,12 @@
 'use strict';
 
-let gulp 				= require('gulp');
-let gulputil 		= require('gulp-util');
-let sass 				= require('gulp-sass');
-let runSequence = require('run-sequence');
-let uglify 			= require('gulp-uglify');
-let watch 			= require('gulp-watch');
-let del 				= require('del');
+const gulp 				= require('gulp');
+const gulputil 		= require('gulp-util');
+const sass 				= require('gulp-sass');
+const runSequence = require('run-sequence');
+const uglify 			= require('gulp-uglify');
+const watch 			= require('gulp-watch');
+const del 				= require('del');
 
 
 gulp.task('watch', function() {
