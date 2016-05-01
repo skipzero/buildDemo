@@ -3,16 +3,12 @@ logs
 *.log
 npm-debug.log*
 
-# OSX 
+# OSX
 .DS_Store
 build/*
 
-# Sublime
-build.sublime-project
-build.sublime-workspace
-
-# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
-.grunt
+# BOWER
+./bower_components
 
 #SASS
 .sass-cache
