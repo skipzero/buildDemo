@@ -1,0 +1,22 @@
+{
+  "name": "gulpDemo",
+  "description": "build demo",
+  "main": "index.html",
+  "authors": [
+    "skip mcbride"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/zerosquadron/buildDemo",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "bootstrap-sass-official#^3.3.6",
+    "font-awesome": "fontawesome#^4.6.1"
+  }
+}
