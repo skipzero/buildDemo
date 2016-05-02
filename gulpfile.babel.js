@@ -5,6 +5,7 @@ const gutil 			= require('gulp-util');
 const bower 			= require('gulp-bower');
 const sass 				= require('gulp-sass');
 const notify 			= require('gulp-notify');
+const sourcemaps 	= require('gulp-sourcemaps');
 const runSequence = require('run-sequence');
 const watch 			= require('gulp-watch');
 const del 				= require('del');
@@ -19,14 +20,13 @@ const config = {
 
 }
 
-
 gulp.task('watch', () => {
 	watch([config.sass + '/*.scss', config.js + '/*.js', 'src/**/*.html'], () => {
 		gulp.start();
 	})
 });
 
-gulp.task('default', () => { runSequence(['clean'], ['bower'], ['build'], ['sass'], ['js'] )});
+gulp.task('default', () => { runSequence(['clean'], ['bower'], ['icons'], ['build'], ['sass'], ['js'] )});
 
 // move our templates and/or static files
 gulp.task('build', () => {
@@ -35,22 +35,30 @@ gulp.task('build', () => {
 });
 
 gulp.task('bower', () => {
-	return bower().pipe(
-		gulp.dest(config.bower)) 
-})
+	return bower()
+	.pipe(gulp.dest(config.bower)) 
+});
+
+gulp.task('icons', () => {
+	return gulp.src(config.bower + '/font-awesome/fonts/**.*')
+	.pipe(gulp.dest('./build/fonts/'))
+});
 
 // processes and moves our stylesheets.
 gulp.task('sass', () => {
-	return gulp.src([config.sass + '/*.scss', './src/vendor/**.*.scss'])
+	return gulp.src([config.sass + '/*.scss', config.bowerCss + '/**/*.scss'])
+	.pipe(sourcemaps.init())
 	.pipe(sass({
 		style: 'compressed',
-		loadPath: [
+		includePaths: [
 			config.sass,
-			config.bowerCss + '/**/*.scss'
+			config.bowerCss
 		 ]
 	}).on('error', notify.onError( (error) => {
-		return 'ERROR: ' + error.message;
+		
+		return '\n\n ERROR: ' + error.formatted, error;
 	})))
+	.pipe(sourcemaps.write())
 	.pipe(gulp.dest('./build/css'));
 });
 
