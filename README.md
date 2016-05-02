@@ -4,9 +4,9 @@ I've combinied a very simple example of building Bootstrap sass with bower and g
 ###To install:
 `$ git clone https://github.com/zerosquadron/buildDemo.git`
 
-`npm install`
+`$ npm install`
 
-`gulp`
+`$ gulp`
 
 ##Bootstrap
 [http://getbootstrap.com]
