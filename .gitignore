@@ -7,8 +7,8 @@ npm-debug.log*
 .DS_Store
 build/*
 
-# BOWER
-./bower_components
+# BOWERbower_components
+bower_components/*
 
 #SASS
 .sass-cache
