@@ -9,7 +9,7 @@ I've combinied a very simple example of building Bootstrap sass with bower and g
 `$ gulp`
 
 ##Bootstrap
-[http://getbootstrap.com]
+http://v4-alpha.getbootstrap.com/
 
 ## Gulp
 [http://gulpjs.com]
