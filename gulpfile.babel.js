@@ -59,6 +59,7 @@ gulp.task('sass', () => {
 		return '\n\n ERROR: ' + error.formatted, error;
 	})))
 	.pipe(sourcemaps.write())
+	.pipe(gutil.log('Check...'))
 	.pipe(gulp.dest('./build/css'));
 });
 
