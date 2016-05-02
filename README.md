@@ -1,16 +1,17 @@
 # buildDemo
-I've combinied a very simple example of JS, SASS and HTML to show what's needed for each tool and how they work. 
+I've combinied a very simple example of building Bootstrap sass with bower and gulp. Notice namespaced bootstrap by importing our sass files into our main.scss before compiling to main.css
 
+###To install:
+`$ git clone https://github.com/zerosquadron/buildDemo.git`
 
-## Webpack
-http://webpack.github.io/
+`$ npm install`
+
+`$ gulp`
+
+##Bootstrap
+[http://getbootstrap.com]
 
 ## Gulp
-http://gulpjs.com
+[http://gulpjs.com]
 
-## Grunt
-http://gruntjs.com
-***
 
-## Articles
-http://survivejs.com/webpack_react/webpack_compared/
