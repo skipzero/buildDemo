@@ -1,3 +1,7 @@
+#git
+.gitignore
+.git
+
 # Logs
 logs
 *.log
@@ -13,17 +17,10 @@ bower_components/*
 #SASS
 .sass-cache
 
-# node-waf configuration
-.lock-wscript
-
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
 # Dependency directory
 node_modules
-
-# Optional npm cache directory
 .npm
-
-# Optional REPL history
 .node_repl_history
