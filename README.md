@@ -1,8 +1,11 @@
 # buildDemo
 I've combinied a very simple example of building Bootstrap sass with bower and gulp. Notice namespaced bootstrap by importing our sass files into our main.scss before compiling to main.css
 
+### From this article
+[setting-gulp-bower-bootstrap-sass-fontawesome](https://ericlbarnes.com/2014/09/19/setting-gulp-bower-bootstrap-sass-fontawesome/)
+
 ### This is the bootstrap < v4 version
-bootstrap 4: [Build Demo](https://github.com/zerosquadron/buildDemo/tree/Bootstrap4) 
+bootstrap 4: [Build Demo](https://github.com/zerosquadron/buildDemo/tree/Bootstrap4)
 
 ### To install:
 `$ git clone https://github.com/zerosquadron/buildDemo.git`
@@ -19,4 +22,3 @@ bootstrap 4: [Build Demo](https://github.com/zerosquadron/buildDemo/tree/Bootstr
 
 ## Bower
 [bower](http://bower.io)
-
