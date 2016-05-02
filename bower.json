@@ -16,7 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap-sass": "bootstrap-sass-official#4.0.0-alpha.2",
+    "bootstrap-sass": "./bootstrap-4.0.0-alpha.2",
     "font-awesome": "fontawesome#^4.6.1"
   }
 }
