@@ -2,10 +2,12 @@
 
 const gulp 				= require('gulp');
 const gutil 			= require('gulp-util');
+const babel				= require('gulp-babel');
 const bower 			= require('gulp-bower');
 const sass 				= require('gulp-sass');
 const notify			= require('gulp-notify');
-const cssClean 		= require('gulp-clean-css');
+const uglify			= require('gulp-uglify');
+const clean 			= require('gulp-clean-css');
 const sourcemaps 	= require('gulp-sourcemaps');
 const runSequence = require('run-sequence');
 const watch 			= require('gulp-watch');
@@ -60,7 +62,7 @@ gulp.task('sass', () => {
 		}).on('error', notify.onError((error) => {
 			return '\n\n ERROR: ' + error.formatted, error;
 		})))
-		.pipe(cssClean())
+		.pipe(clean())
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./build/css'));
 });
@@ -68,7 +70,13 @@ gulp.task('sass', () => {
 // uglify our JS and move to build
 gulp.task('js', () => {
 	return gulp.src([config.js + '/*.js'])
-		// .pipe(uglify())
+		.pipe(babel({
+			presets: ['es2015']
+		}))
+		.pipe(uglify()
+			.on('error', notify.onError((error) => {
+				return '\n\n ERROR: ' + error.formatted, error;
+			})))
 		.pipe(gulp.dest(config.build + '/js'))
 })
 
