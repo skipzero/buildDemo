@@ -2,6 +2,8 @@
 
 const gulp 				= require('gulp');
 const gutil 			= require('gulp-util');
+const airbnb      = require('airbnb-style');
+const prefixer    = require('gulp-autoprefixer');
 const babel				= require('gulp-babel');
 const bower 			= require('gulp-bower');
 const sass 				= require('gulp-sass');
@@ -14,16 +16,17 @@ const watch 			= require('gulp-watch');
 const del 				= require('del');
 
 const config = {
-	sass: './src/css',
-	js: './src/js',
-	bower: './bower_components',
-	bowerCss: './bower_components/bootstrap-sass/assets/stylesheets',
+	sass:        './src/css',
+	js:          './src/js',
+	bower:       './bower_components',
+	bowerCss:    './bower_components/bootstrap-sass/assets/stylesheets',
 	bowerJquery: './bower_components/jquery',
-	html: './src/**/*.html',
-	build: './build'
+	html:        './src/**/*.html',
+	build:       './build'
 }
 
 gulp.task('watch', () => {
+  console.log('========', airbnb)
 	watch([config.sass + '/*.scss', config.js + '/*.js', 'src/**/*.html'], () => {
 		gulp.start();
 	})
@@ -62,10 +65,20 @@ gulp.task('sass', () => {
 		}).on('error', notify.onError((error) => {
 			return '\n\n ERROR: ' + error.formatted, error;
 		})))
+    .pipe(prefixer())
 		.pipe(clean())
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./build/css'));
 });
+
+gulp.task('lint', () => {
+  return gulp.src([config.js + '/*.js'])
+    .pipe(prefixer({
+      presets:
+        'airbnb'
+    }))
+})
+
 
 // uglify our JS and move to build
 gulp.task('js', () => {
