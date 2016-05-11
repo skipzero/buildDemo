@@ -1,15 +1,12 @@
 /* jshint -W034 */
 (() => {
-'use strict';
+  const myButton = document.getElementById('button');
 
-	let myButton = document.getElementById('button');
+  myButton.addEventListener('click', (e) => {
+    e.preventDefault();
 
-	myButton.addEventListener('click', (e) => {
-		e.preventDefault();
-
-		let textInput = document.getElementById('input');
-		alert('hello ' + textInput.value);
-
-	});
-
+    const textInput = document.getElementById('input');
+    const hello = 'hello';
+    console.log(hello + textInput.value);
+  });
 })();

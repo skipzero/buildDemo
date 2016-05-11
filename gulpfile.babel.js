@@ -2,8 +2,8 @@
 
 const gulp 				= require('gulp');
 const gutil 			= require('gulp-util');
-const airbnb      = require('airbnb-style');
 const prefixer    = require('gulp-autoprefixer');
+const eslint      = require('gulp-eslint');
 const babel				= require('gulp-babel');
 const bower 			= require('gulp-bower');
 const sass 				= require('gulp-sass');
@@ -33,7 +33,7 @@ gulp.task('watch', () => {
 });
 
 gulp.task('default', () => {
-	runSequence(['clean'], ['bower'], ['icons'], ['build'], ['sass'], ['js'])
+	runSequence(['clean'], ['bower'], ['icons'], ['build'], ['sass'], ['lint'], ['js'])
 });
 
 // move our templates and/or static files
@@ -72,11 +72,10 @@ gulp.task('sass', () => {
 });
 
 gulp.task('lint', () => {
-  return gulp.src([config.js + '/*.js'])
-    .pipe(prefixer({
-      presets:
-        'airbnb'
-    }))
+  return gulp.src([config.js + '/*.js', '!node_modules/**'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
 })
 
 
