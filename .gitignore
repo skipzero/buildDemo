@@ -9,7 +9,6 @@ npm-debug.log*
 
 # OSX
 .DS_Store
-build/*
 
 # BOWER
 bower_components

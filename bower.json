@@ -1,6 +1,6 @@
 {
-  "name": "gulp-demo",
-  "description": "build demo",
+  "name": "gulp-bs-jq",
+  "description": "gulp build script",
   "main": "index.html",
   "authors": [
     "skip mcbride"
@@ -12,7 +12,6 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "vendors",
     "test",
     "tests"
   ],

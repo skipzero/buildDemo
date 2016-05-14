@@ -91,7 +91,7 @@ gulp.task('js', () => {
 })
 
 gulp.task('clean', () => {
-	return del(['./build/']).then(paths => {
+	return del(['./build/', 'bower_components']).then(paths => {
     console.log('Deleted ' + paths.join('\n'));
   })
 });
