@@ -32,7 +32,7 @@ gulp.task('watch', () => {
 });
 
 gulp.task('default', () => {
-	runSequence(['clean'], ['bower'], ['build'], ['sass'], ['js'], ['lint'])
+	runSequence(['clean'], ['bower'], ['build'], ['icons'], ['sass'], ['js'], ['lint'])
 });
 
 // move our templates and/or static files
@@ -72,6 +72,10 @@ gulp.task('lint', () => {
     // .pipe(eslint.failAfterError())
 })
 
+gulp.task('icons', () => {
+  return gulp.src([config.bowerBS + '/assets/fonts/bootstrap/**'])
+    .pipe(gulp.dest('./build/fonts'))
+});
 
 // uglify our JS and move to build
 gulp.task('js', () => {
@@ -87,7 +91,7 @@ gulp.task('js', () => {
 })
 
 gulp.task('clean', () => {
-	return del(['./build']).then(paths => {
+	return del(['./build/']).then(paths => {
     console.log('Deleted ' + paths.join('\n'));
   })
 });
