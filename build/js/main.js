@@ -1,1 +1,1 @@
-"use strict";var mainjs=function(){var e=document.getElementById("button");e.addEventListener("click",function(e){e.preventDefault();var t=document.getElementById("input"),n="hello";console.log(n+t.value)})}();document.querySelector("#hljs").appendChild(mainjs);
+"use strict";var mainjs=function(){var e=document.getElementById("button");e.addEventListener("click",function(e){e.preventDefault();var t=document.getElementById("input"),n="hello";console.log(n+t.value)})}();module.exports=mainjs;
