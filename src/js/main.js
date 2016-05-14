@@ -1,10 +1,6 @@
-// const $hl = require('jquery');
-
-(() => {
+const mainjs = (() => {
   // const $hl = require('');
   const myButton = document.getElementById('button');
-
-  console.log($hl);
 
   myButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -14,3 +10,5 @@
     console.log(hello + textInput.value);
   });
 })();
+
+document.querySelector('#hljs').appendChild(mainjs);
