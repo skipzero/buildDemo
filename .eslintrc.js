@@ -1,5 +1,9 @@
+
 module.exports = {
     "extends": "airbnb",
     "installedESLint": true,
-    "plugins": [ ]
+    "plugins": [ ],
+    "env": {
+      "node": true
+    }
 };

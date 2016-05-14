@@ -12,11 +12,11 @@
     "**/.*",
     "node_modules",
     "bower_components",
+    "vendors",
     "test",
     "tests"
   ],
   "dependencies": {
-    "bootstrap-sass": "bootstrap-sass-official#^3.3.6",
-    "font-awesome": "fontawesome#^4.6.1"
+    "bootstrap-sass": "bootstrap-sass-official#^3.3.6"
   }
 }

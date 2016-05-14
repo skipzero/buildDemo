@@ -20,20 +20,19 @@ const config = {
 	js:          './src/js',
 	bower:       './bower_components',
 	bowerCss:    './bower_components/bootstrap-sass/assets/stylesheets',
-	bowerJquery: './bower_components/jquery',
+	bowerJquery: './bower_components/jquery/dist/jquery.min.js',
 	html:        './src/**/*.html',
 	build:       './build'
 }
 
 gulp.task('watch', () => {
-  console.log('========', airbnb)
 	watch([config.sass + '/*.scss', config.js + '/*.js', 'src/**/*.html'], () => {
 		gulp.start();
 	})
 });
 
 gulp.task('default', () => {
-	runSequence(['clean'], ['bower'], ['icons'], ['build'], ['sass'], ['lint'], ['js'])
+	runSequence(['clean'], ['bower'], ['build'], ['sass'], ['js'], ['lint'])
 });
 
 // move our templates and/or static files
@@ -45,11 +44,6 @@ gulp.task('build', () => {
 gulp.task('bower', () => {
 	return bower()
 		.pipe(gulp.dest(config.bower))
-});
-
-gulp.task('icons', () => {
-	return gulp.src(config.bower + '/font-awesome/fonts/**.*')
-		.pipe(gulp.dest(config.build + '/fonts'))
 });
 
 // processes and moves our stylesheets.
@@ -75,13 +69,13 @@ gulp.task('lint', () => {
   return gulp.src([config.js + '/*.js', '!node_modules/**'])
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
+    // .pipe(eslint.failAfterError())
 })
 
 
 // uglify our JS and move to build
 gulp.task('js', () => {
-	return gulp.src([config.js + '/*.js'])
+	return gulp.src([config.js + '/*.js', config.bowerJquery])
 		.pipe(babel({
 			presets: ['es2015']
 		}))
@@ -93,5 +87,7 @@ gulp.task('js', () => {
 })
 
 gulp.task('clean', () => {
-	return del(['./build/index.html', './build/css/**/*', './build/js/**/*'])
+	return del(['./build']).then(paths => {
+    console.log('Deleted ' + paths.join('\n'));
+  })
 });
