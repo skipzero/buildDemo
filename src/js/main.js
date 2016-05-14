@@ -11,4 +11,4 @@ const mainjs = (() => {
   });
 })();
 
-document.querySelector('#hljs').appendChild(mainjs);
+module.exports = mainjs;
