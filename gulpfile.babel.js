@@ -65,17 +65,17 @@ gulp.task('sass', () => {
 		.pipe(gulp.dest('./build/css'));
 });
 
+gulp.task('icons', () => {
+  return gulp.src([config.bowerBS + '/assets/fonts/bootstrap/**/*'])
+    .pipe(gulp.dest('./build/fonts'))
+});
+
 gulp.task('lint', () => {
   return gulp.src([config.js + '/*.js', '!node_modules/**'])
     .pipe(eslint())
     .pipe(eslint.format())
     // .pipe(eslint.failAfterError())
 })
-
-gulp.task('icons', () => {
-  return gulp.src([config.bowerBS + '/assets/fonts/bootstrap/**'])
-    .pipe(gulp.dest('./build/fonts'))
-});
 
 // uglify our JS and move to build
 gulp.task('js', () => {
