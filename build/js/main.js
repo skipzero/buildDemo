@@ -1,1 +1,1 @@
-"use strict";var mainjs=function(){var e=document.getElementById("button");e.addEventListener("click",function(e){e.preventDefault();var t=document.getElementById("input"),n="hello";console.log(n+t.value)})}();module.exports=mainjs;
+"use strict";var $hl=require("../../bower_components/jquery/dist/jquery.min.js"),mainjs=function(){console.log("====",$hl);var e=document.getElementById("button");e.addEventListener("click",function(e){e.preventDefault();var n=document.getElementById("input"),t="hello";console.log(t+n.value)})}();module.exports=mainjs;

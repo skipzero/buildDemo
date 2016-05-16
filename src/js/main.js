@@ -1,5 +1,5 @@
 const mainjs = (() => {
-  // const $hl = require('');
+  
   const myButton = document.getElementById('button');
 
   myButton.addEventListener('click', (e) => {
@@ -10,5 +10,3 @@ const mainjs = (() => {
     console.log(hello + textInput.value);
   });
 })();
-
-module.exports = mainjs;
